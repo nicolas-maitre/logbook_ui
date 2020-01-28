@@ -1,5 +1,8 @@
+var internshipId = 356;//turbotemp
+
 var TIME_SLIDE_TRANSITION_LENGTH = 300;
 
+var activities = {};
 var weeks = {};
 var currentWeekId = false;
 var currentDisplayMode = "weeks";
@@ -12,6 +15,9 @@ document.addEventListener("DOMContentLoaded", async(evt) => {
         switchTime("next");
     });
     todayTimeBtn.addEventListener("click", resetTime);
+    todayNewActivityBtn.addEventListener("click", function(){
+        openCreateActivity(new Date());
+    });
     /*start*/
     resetTime();
 });
@@ -106,9 +112,16 @@ function resetTime() {
     }
 }
 
-function loadActivities(weekId) {
+async function loadActivities(weekId) {
     var weekObj = weeks[weekId];
+    if(!weekObj.loader){
+        weekObj.loader = Utils.addLoader(weekObj.container);
+    }
 
+    var fromStr = weekObj.week.first.toISOString();
+    var toStr = weekObj.week.last.toISOString();
+
+    await Utils.callApi(`/api/internships/${internshipId}/logbook/activities`, {query:{entryDate:{from: fromStr, to: toStr}}});
 }
 
 function buildDayAdapter(parent, date) {
@@ -117,10 +130,23 @@ function buildDayAdapter(parent, date) {
     var dateDisplay = header.addElement("p", "dayAdapterDateDisplay");
     var timeDisplay = header.addElement("p", "dayAdapterTimeDisplay inactiveColor");
     var container = element.addElement("div", "dayAdapterActivitiesContainer");
+    var addBtn = container.addElement("button", "dayAdapterNewActivityBtn");
 
     //data
     dateDisplay.textContent = `${date.toLocaleDateString("fr-FR", {weekday: "long"}).capitalise()} ${date.getDate()}.${date.getRightMonth()}`;
     timeDisplay.textContent = "Inactif";
+    addBtn.textContent = "+";
+    //evt
+    addBtn.addEventListener("click", function(evt){
+        openCreateActivity(date);
+    });
 
     return { element, container, timeDisplay };
+}
+
+function openCreateActivity(date){
+    console.log("open create activity window", date);
+}
+function openEditActivity(id){
+    console.log("open edit activity window", id);
 }

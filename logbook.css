@@ -6,7 +6,6 @@
     display: none!important;
 }
 
-
 /*colors*/
 
 .okColor {
@@ -16,7 +15,6 @@
 .inactiveColor {
     color: #666;
 }
-
 
 /*logbook*/
 
@@ -44,7 +42,6 @@
 .logbookContainer button:active {
     transform: scale(0.8);
 }
-
 
 /*today*/
 
@@ -80,7 +77,6 @@
     margin-top: calc((150px - 60px) / 2);
 }
 
-
 /*calendar*/
 
 .calendarSection {
@@ -106,10 +102,7 @@
     border-radius: 3px;
 }
 
-#lastTimeBtn,
-#currentDatesDisplay,
-#nextTimeBtn,
-#calendarModeBtn {
+#lastTimeBtn, #currentDatesDisplay, #nextTimeBtn, #calendarModeBtn {
     display: inline-block;
     vertical-align: middle;
     background: none;
@@ -117,8 +110,7 @@
     font-weight: bold;
 }
 
-#lastTimeBtn,
-#nextTimeBtn {
+#lastTimeBtn, #nextTimeBtn {
     font-size: 20px;
 }
 
@@ -145,7 +137,6 @@
     overflow: hidden;
 }
 
-
 /*weeks*/
 
 #weeksContainer {
@@ -170,7 +161,6 @@
 .weekContainer.right {
     left: 100%;
 }
-
 
 /*days*/
 
@@ -198,4 +188,14 @@
     padding: 30px 5px 5px 5px;
     position: relative;
     border: 1px solid;
+}
+
+.dayAdapterNewActivityBtn {
+    border-radius: 5px;
+    padding: 0;
+    width: 23px;
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }

@@ -74,5 +74,22 @@ function async_setTimeout(time) {
 
 var Utils = {};
 Utils.callApi = async function(path, { method = "GET", query = false, body = false, rawCallData = false } = {}) {
-    sss
+    console.log("call api ", arguments[1])
 };
+Utils.addLoader = function(parent, className){
+    var loader = parent.addElement("div", className);
+    loader.classList.add("none");
+    requestAnimationFrame(()=>{
+        loader.style.opacity = 1;
+    });
+    async function remove(){
+        await async_requestAnimationFrame();
+        loader.style.opacity = 0;
+        await async_requestAnimationFrame();
+        loader.remove();
+    }
+    return {
+        elem: loader,
+        remove
+    }
+}

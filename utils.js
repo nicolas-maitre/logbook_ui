@@ -75,16 +75,21 @@ function async_setTimeout(time) {
 var Utils = {};
 Utils.callApi = async function(path, { method = "GET", query = false, body = false, rawCallData = false } = {}) {
     console.log("call api ", arguments[1])
+    //fake load
+    await async_setTimeout(1000);
+    return allActivities;
 };
 Utils.addLoader = function(parent, className){
     var loader = parent.addElement("div", className);
-    loader.classList.add("none");
+    loader.classList.add("loader");
+    loader.style.opacity = 0;
     requestAnimationFrame(()=>{
         loader.style.opacity = 1;
     });
     async function remove(){
         await async_requestAnimationFrame();
         loader.style.opacity = 0;
+        await async_setTimeout(300);
         await async_requestAnimationFrame();
         loader.remove();
     }

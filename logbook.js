@@ -115,13 +115,16 @@ function resetTime() {
 async function loadActivities(weekId) {
     var weekObj = weeks[weekId];
     if(!weekObj.loader){
-        weekObj.loader = Utils.addLoader(weekObj.container);
+        weekObj.loader = Utils.addLoader(weekObj.container, "weekDays");
     }
 
     var fromStr = weekObj.week.first.toISOString();
     var toStr = weekObj.week.last.toISOString();
 
     await Utils.callApi(`/api/internships/${internshipId}/logbook/activities`, {query:{entryDate:{from: fromStr, to: toStr}}});
+    
+    weekObj.loader.remove();
+    weekObj.loader = false;
 }
 
 function buildDayAdapter(parent, date) {

@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="logbook.css"/>
+        <script src="fakeApi.js"></script>
+        <script src="logbook.js"></script>
+        <script src="utils.js"></script>
+    </head>
+    <body class="logbookContainer">
+        <h1>Stage de JeanJean, Kudelski</h1>
+        <div class="todaySection">
+            <h2 class="todayTitle">Aujourd'hui</h2>
+            <p id="todayComplianceMsg" class="inactiveColor">Inactif</p>
+            <div id="todayActivitiesContainer">
+                <button id="todayNewActivityBtn">+</button>
+            </div>
+        </div>
+        <div class="calendarSection">
+            <div class="calendarHeader">
+                <button id="todayTimeBtn">Aujourd'hui</button>
+                <button id="lastTimeBtn">&lt;</button>
+                <p id="currentDatesDisplay">...</p>
+                <button id="nextTimeBtn">&gt;</button>
+                <button id="calendarModeBtn"></button>
+            </div>
+            <div class="calendarBody">
+                <div id="monthsContainer" class="hidden">
+
+                </div>
+                <div id="weeksContainer" class="current">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
